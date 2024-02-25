@@ -1521,7 +1521,6 @@ checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
 name = "lensledger"
 version = "0.0.0"
 dependencies = [
- "arboard",
  "serde",
  "serde_json",
  "tauri",
