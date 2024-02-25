@@ -15,15 +15,11 @@ import {
     SheetTitle,
     SheetTrigger,
 } from "@/components/ui/sheet"
+import { readText } from "@tauri-apps/api/clipboard";
+
+console.log(await readText());
 
 function App() {
-    const [greetMsg, setGreetMsg] = useState("");
-    const [name, setName] = useState("");
-
-    async function greet() {
-        // Learn more about Tauri commands at https://tauri.app/v1/guides/features/command
-        setGreetMsg(await invoke("greet", { name }));
-    }
 
     return (
         <Sheet>
