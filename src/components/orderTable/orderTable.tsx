@@ -7,9 +7,11 @@ import {
     TableCaption,
     TableRow,
 } from "@/components/ui/table"
+import { useOrderTableStore } from "../store/store"
 
 
 function orderTable() {
+    const orders = useOrderTableStore((state) => state.imageNumbers)
     return (
         <Table>
             <TableCaption>Auflistung aller Bilder</TableCaption>
@@ -23,13 +25,18 @@ function orderTable() {
                 </TableRow>
             </TableHeader>
             <TableBody>
-                <TableRow>
-                    <TableCell className="font-medium">1</TableCell>
-                    <TableCell >004</TableCell>
-                    <TableCell>13x18cm</TableCell>
-                    <TableCell>Farbe</TableCell>
-                    <TableCell className="text-right">25€</TableCell>
-                </TableRow>
+                {orders.map((order, index) => {
+                    return (
+                        <TableRow>
+                        <TableCell className="font-medium">1</TableCell>
+                        <TableCell >{order}</TableCell>
+                        <TableCell>13x18cm</TableCell>
+                        <TableCell>Farbe</TableCell>
+                        <TableCell className="text-right">25€</TableCell>
+                    </TableRow>
+                    )
+                })}
+
             </TableBody>
         </Table>
 
