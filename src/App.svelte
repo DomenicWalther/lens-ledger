@@ -1,19 +1,22 @@
 <script lang="ts">
     import Dropzone from "svelte-file-dropzone";
-    type File = {
-        lastModified: number;
-        name: string;
-        path: string;
-        size: number;
-        type: string;
-        webkitRelativePath: string;
-    };
-    let files: Array<File> = [];
+    let files: Array<string> = [];
+    function getLast4DigitsFromString(string: string) {
+        const re = /(\d{4})(?=\D*$)/;
+        const match = string.match(re);
+        if (!match) {
+            return "No match found";
+        }
+        return match[0];
+    }
 
     function handleFileSelect(e) {
+        let returnArray = [];
         const { acceptedFiles } = e.detail;
-        console.log(acceptedFiles);
-        files = [...files, ...acceptedFiles];
+        for (let file of acceptedFiles) {
+            returnArray.push(getLast4DigitsFromString(file.name));
+        }
+        files = [...files, ...returnArray];
     }
 </script>
 
@@ -21,7 +24,7 @@
     <Dropzone on:drop={handleFileSelect} />
     <ol>
         {#each files as file}
-            <li>{file.name}</li>
+            <li>{file}</li>
         {/each}
     </ol>
 </main>
