@@ -1,5 +1,6 @@
 <script lang="ts">
     import Dropzone from "svelte-file-dropzone";
+    import ImageTable from "$lib/components/ImageTable.svelte";
     let files: Array<string> = [];
     function getLast4DigitsFromString(string: string) {
         const re = /(\d{4})(?=\D*$)/;
@@ -27,4 +28,7 @@
             <li>{file}</li>
         {/each}
     </ol>
+    {#if files.length > 0}
+        <ImageTable />
+    {/if}
 </main>
