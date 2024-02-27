@@ -8,7 +8,7 @@ export default defineConfig(async () => ({
 
     resolve: {
         alias: {
-            $lib: path.resolve(".src/lib"),
+            $lib: path.resolve("./src/lib"),
         },
     },
 
