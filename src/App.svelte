@@ -1,21 +1,29 @@
 <script lang="ts">
     import Greet from "./lib/Greet.svelte";
+    import Dropzone from "svelte-file-dropzone";
+
+    let files = {
+        accepted: [],
+        rejected: [],
+    };
+
+    function handleFileSelect(e) {
+        console.log("FileSelection");
+        const { acceptedFiles, fileRejections } = e.detail;
+        files.accepted = [...files.accepted, ...acceptedFiles];
+        files.rejected = [...files.rejected, ...fileRejections];
+        console.log(files);
+    }
 </script>
 
 <main class="container">
     <h1>Welcome to Tauri!</h1>
-
-    <div class="row">
-        <a href="https://vitejs.dev" target="_blank">
-            <img src="/vite.svg" class="logo vite" alt="Vite Logo" />
-        </a>
-        <a href="https://tauri.app" target="_blank">
-            <img src="/tauri.svg" class="logo tauri" alt="Tauri Logo" />
-        </a>
-        <a href="https://svelte.dev" target="_blank">
-            <img src="/svelte.svg" class="logo svelte" alt="Svelte Logo" />
-        </a>
-    </div>
+    <Dropzone on:drop={handleFileSelect} />
+    <ol>
+        {#each files.accepted as file}
+            <li>{file}</li>
+        {/each}
+    </ol>
 
     <p class="font-bold">
         Click on the Tauri, Vite, and Svelte logos to learn more.
