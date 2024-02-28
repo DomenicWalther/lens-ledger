@@ -1,34 +1,43 @@
 <script lang="ts">
     import Dropzone from "svelte-file-dropzone";
     import ImageTable from "$lib/components/ImageTable.svelte";
-    let files: Array<string> = [];
+    import { imageList } from "$lib/store";
     function getLast4DigitsFromString(string: string) {
         const re = /(\d{4})(?=\D*$)/;
         const match = string.match(re);
-        if (!match) {
-            return "No match found";
+        if (match !== null) {
+            return match[0];
         }
-        return match[0];
     }
 
     function handleFileSelect(e) {
-        let returnArray = [];
+        let returnArray: Array<string> = [];
         const { acceptedFiles } = e.detail;
         for (let file of acceptedFiles) {
-            returnArray.push(getLast4DigitsFromString(file.name));
+            let fileDigits = getLast4DigitsFromString(file.name);
+            if (fileDigits !== undefined) {
+                returnArray.push(fileDigits);
+            }
         }
-        files = [...files, ...returnArray];
+        let orderList = returnArray.map((item) => {
+            return {
+                imageNumber: item,
+                color: "Farbe",
+                amount: 1,
+                description: " ",
+                price: 25,
+            };
+        });
+        imageList.update((currentItems) => [...currentItems, ...orderList]);
     }
 </script>
 
 <main class="container">
-    <Dropzone on:drop={handleFileSelect} />
-    <ol>
-        {#each files as file}
-            <li>{file}</li>
-        {/each}
-    </ol>
-    {#if files.length > 0}
+    {#if $imageList.length > 0}
         <ImageTable />
     {/if}
+    <Dropzone
+        on:drop={handleFileSelect}
+        containerClasses="fixed bottom-0 w-full"
+    />
 </main>
