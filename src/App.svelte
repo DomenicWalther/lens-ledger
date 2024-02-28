@@ -32,12 +32,18 @@
     }
 </script>
 
-<main class="container">
+<main class="">
     {#if $imageList.length > 0}
         <ImageTable />
+        <button
+            class="px-10 py-5 bg-purple-900 text-white font-bold w-full fixed bottom-0"
+            >Auftrag abschließen</button
+        >
     {/if}
-    <Dropzone
-        on:drop={handleFileSelect}
-        containerClasses="fixed bottom-0 w-full"
-    />
+    {#if $imageList.length === 0}
+        <Dropzone
+            on:drop={handleFileSelect}
+            containerClasses="fixed bottom-0 w-full"
+        />
+    {/if}
 </main>
