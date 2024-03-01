@@ -22,6 +22,7 @@
         let orderList = returnArray.map((item) => {
             return {
                 imageNumber: item,
+                size: "13x18cm",
                 color: "Farbe",
                 amount: 1,
                 description: " ",
