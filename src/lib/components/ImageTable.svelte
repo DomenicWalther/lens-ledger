@@ -8,7 +8,7 @@
 		);
 	};
 
-	const updateOrder = (index: number, event: InputEvent) => {
+	const updateOrder = (index: number, event: Event) => {
 		const newAmount = parseFloat((event.target as HTMLInputElement).value);
 		imageList.update(currentItems =>
 			currentItems.map((item, idx) =>
