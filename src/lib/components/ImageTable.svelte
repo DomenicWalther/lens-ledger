@@ -7,6 +7,17 @@
 			currentItems.filter((_: orderType, i: number) => i !== deleteIndex)
 		);
 	};
+
+	const updateOrder = (index: number, event: InputEvent) => {
+		const newAmount = parseFloat((event.target as HTMLInputElement).value);
+		imageList.update(currentItems =>
+			currentItems.map((item, idx) =>
+				idx === index
+					? { ...item, amount: newAmount, price: newAmount * 25 }
+					: item
+			)
+		);
+	};
 </script>
 
 <Table.Root>
@@ -43,7 +54,11 @@
 					</select>
 				</Table.Cell>
 				<Table.Cell>
-					<input type="text" value={image.amount} />
+					<input
+						type="text"
+						value={image.amount}
+						on:change={event => updateOrder(i, event)}
+					/>
 				</Table.Cell>
 				<Table.Cell>
 					<input type="text" value={image.description} />
