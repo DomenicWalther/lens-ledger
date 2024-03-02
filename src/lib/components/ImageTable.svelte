@@ -35,9 +35,19 @@
                         ></select
                     ></Table.Cell
                 >
-                <Table.Cell>{image.color}</Table.Cell>
-                <Table.Cell>{image.amount}</Table.Cell>
-                <Table.Cell>{image.description}</Table.Cell>
+                <Table.Cell
+                    ><select
+                        ><option>Farbe</option><option>Mischton</option><option
+                            >Braunton</option
+                        ><option>SchwarzWeiß</option></select
+                    ></Table.Cell
+                >
+                <Table.Cell
+                    ><input type="text" value={image.amount} /></Table.Cell
+                >
+                <Table.Cell
+                    ><input type="text" value={image.description} /></Table.Cell
+                >
                 <Table.Cell class="text-right">{image.price}€</Table.Cell>
                 <Table.Cell class="text-right"
                     ><button on:click={() => deleteRow(i)}>Löschen</button
