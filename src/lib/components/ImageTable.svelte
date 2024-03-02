@@ -71,3 +71,10 @@
 		{/each}
 	</Table.Body>
 </Table.Root>
+
+<style>
+	select {
+		-webkit-appearance: none;
+		appearance: none;
+	}
+</style>
