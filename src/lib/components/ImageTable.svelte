@@ -17,7 +17,7 @@
             <Table.Head class="w-[100px]">Bildnummer</Table.Head>
             <Table.Head class="w-[100px]">Größe</Table.Head>
             <Table.Head>Farbe</Table.Head>
-            <Table.Head>Amount</Table.Head>
+            <Table.Head>Anzahl</Table.Head>
             <Table.Head>Beschreibung</Table.Head>
             <Table.Head class="text-right">Amount</Table.Head>
             <Table.Head class="text-right">Actions</Table.Head>
