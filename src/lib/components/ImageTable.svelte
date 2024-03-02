@@ -1,6 +1,13 @@
 <script lang="ts">
     import * as Table from "$lib/components/ui/table";
     import { imageList } from "$lib/store";
+    import type { orderType } from "$lib/types";
+    const deleteRow = (deleteIndex: number) => {
+        console.log("Deleting!");
+        imageList.update((currentItems) =>
+            currentItems.filter((_: orderType, i: number) => i !== deleteIndex),
+        );
+    };
 </script>
 
 <Table.Root>
@@ -19,13 +26,23 @@
     <Table.Body>
         {#each $imageList as image, i (i)}
             <Table.Row>
-                <Table.Cell class="font-medium">{image.imageNumber}</Table.Cell>
-                <Table.Cell class="font-medium">{image.size}</Table.Cell>
+                <Table.Cell class="font-medium"
+                    ><input type="text" value={image.imageNumber} /></Table.Cell
+                >
+                <Table.Cell class="font-medium"
+                    ><select class="bg-white rounded-none"
+                        ><option>13x18cm</option><option>20x30cm</option
+                        ></select
+                    ></Table.Cell
+                >
                 <Table.Cell>{image.color}</Table.Cell>
                 <Table.Cell>{image.amount}</Table.Cell>
                 <Table.Cell>{image.description}</Table.Cell>
                 <Table.Cell class="text-right">{image.price}€</Table.Cell>
-                <Table.Cell class="text-right">Actions</Table.Cell>
+                <Table.Cell class="text-right"
+                    ><button on:click={() => deleteRow(i)}>Löschen</button
+                    ></Table.Cell
+                >
             </Table.Row>
         {/each}
     </Table.Body>

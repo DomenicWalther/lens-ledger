@@ -2,14 +2,7 @@
     import Dropzone from "svelte-file-dropzone";
     import ImageTable from "$lib/components/ImageTable.svelte";
     import { imageList } from "$lib/store";
-    function getLast4DigitsFromString(string: string) {
-        const re = /(\d{4})(?=\D*$)/;
-        const match = string.match(re);
-        if (match !== null) {
-            return match[0];
-        }
-    }
-
+    import { getLast4DigitsFromString } from "$lib/helpers";
     function handleFileSelect(e) {
         let returnArray: Array<string> = [];
         const { acceptedFiles } = e.detail;
@@ -40,7 +33,11 @@
             class="px-10 py-5 bg-purple-900 text-white font-bold w-full fixed bottom-0"
             >Auftrag abschließen</button
         >
+        <select class="bg-white rounded-none"
+            ><option>13x18cm</option><option>20x30cm</option></select
+        >
     {/if}
+
     {#if $imageList.length === 0}
         <Dropzone
             on:drop={handleFileSelect}
