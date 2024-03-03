@@ -14,7 +14,7 @@
 			if (fileDigits !== undefined) {
 				returnArray.push(fileDigits);
 			} else {
-				toast('Fehler beim Auslesen der Bildnummer');
+				toast('Fehler beim Auslesen der Bildnummer!');
 			}
 		}
 		let orderList = returnArray.map(item => {
