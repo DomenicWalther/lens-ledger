@@ -5,8 +5,9 @@
 	import { getLast4DigitsFromString } from '$lib/helpers';
 	import { Toaster } from '$lib/components/ui/sonner';
 	import { toast } from 'svelte-sonner';
+	import type { printPossibilities } from '$lib/types';
 
-	function handleFileSelect(e) {
+	function handleFileSelect(e: CustomEvent<any>) {
 		let returnArray: Array<string> = [];
 		const { acceptedFiles } = e.detail;
 		for (let file of acceptedFiles) {
@@ -25,6 +26,8 @@
 				amount: 1,
 				description: ' ',
 				price: 25,
+				isMainImage: false,
+				printMethod: 'Fotoabzug' as printPossibilities,
 			};
 		});
 		imageList.update(currentItems => [...currentItems, ...orderList]);
