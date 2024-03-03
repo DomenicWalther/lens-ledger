@@ -3,10 +3,6 @@
 @tailwind utilities;
 
 
-body {
-    margin-left: 20px;
-    margin-right: 20px;
-}
 @layer base {
   :root {
     --background: 0 0% 100%;
