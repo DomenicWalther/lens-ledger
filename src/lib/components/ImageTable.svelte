@@ -43,6 +43,12 @@
 					<select class="bg-white rounded-none">
 						<option>13x18cm</option>
 						<option>20x30cm</option>
+						<option>30x40cm</option>
+						<option>40x50cm</option>
+						<option>40x60cm</option>
+						<option>50x70cm</option>
+						<option>60x80cm</option>
+						<option>Individuell</option>
 					</select>
 				</Table.Cell>
 				<Table.Cell>
